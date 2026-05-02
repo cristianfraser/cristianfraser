@@ -1,6 +1,7 @@
 {
     "name": "react-typescript",
     "version": "1.0.0",
+    "homepage": "https://cristianfraser.github.io/cristianfraser",
     "description": "React and TypeScript example starter project",
     "keywords": [
         "typescript",

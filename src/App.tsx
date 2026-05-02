@@ -36,13 +36,15 @@ export default function App() {
                 </Button>
             </DemoCard>
             <FeedbackPopup
-                key={defaultSessionKey}
+                key={`default-${defaultSessionKey}`}
+                featureId="demo-feedback-single-popup"
                 isShown={isDefaultOpen}
                 onClose={() => setIsDefaultOpen(false)}
                 position={PopupPosition.BottomLeft}
             />
             <FeedbackPopup
-                key={multiSessionKey}
+                key={`multi-${multiSessionKey}`}
+                featureId="demo-feedback-multi-popup"
                 isShown={isMultiOpen}
                 onClose={() => setIsMultiOpen(false)}
                 position={PopupPosition.BottomRight}

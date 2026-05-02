@@ -34,13 +34,14 @@ const FEEDBACK_POPUP_ARIA_LABEL = 'Feature feedback';
 type FeedbackPopupVariant = 'default' | 'multiple-popups';
 
 interface FeedbackPopupProps {
+    featureId: string;
     isShown: boolean;
     onClose: () => void;
     position?: PopupPosition;
     variant?: FeedbackPopupVariant;
 }
 
-export function FeedbackPopup({ isShown, onClose, position, variant = 'default' }: FeedbackPopupProps) {
+export function FeedbackPopup({ featureId, isShown, onClose, position, variant = 'default' }: FeedbackPopupProps) {
     const [state, setState] = useState<FeedbackState>(FeedbackState.Initial);
     const [selectedRating, setSelectedRating] = useState<RatingType | null>(null);
     const [isLoading, setIsLoading] = useState(false);
@@ -71,7 +72,7 @@ export function FeedbackPopup({ isShown, onClose, position, variant = 'default' 
     async function submitRating(rating: RatingType) {
         setIsLoading(true);
         try {
-            await submitFeedback({ rating });
+            await submitFeedback({ featureId, rating });
             handleSuccess(rating === RatingType.Stellar ? FeedbackState.Trustpilot : null);
         } catch {
             console.error('Error submitting feedback. Try again.');
@@ -92,7 +93,7 @@ export function FeedbackPopup({ isShown, onClose, position, variant = 'default' 
     const submitBetterFeedback = async (rating: RatingType, feedback: string) => {
         setIsLoading(true);
         try {
-            await submitFeedback({ rating, feedback });
+            await submitFeedback({ featureId, rating, feedback });
             handleSuccess(rating === RatingType.Stellar ? FeedbackState.Trustpilot : null);
         } catch {
             console.error('Error submitting feedback. Try again.');
