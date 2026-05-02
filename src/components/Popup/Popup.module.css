@@ -1,0 +1,139 @@
+.container {
+    position: fixed;
+    z-index: 9999;
+    /* overflow: hidden; */
+    width: 320px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    transition: height 220ms ease, background-color 220ms ease;
+}
+
+.content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.closeButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1;
+    padding: 4px 6px;
+    border-radius: 4px;
+    transition: color 0.15s ease;
+}
+
+.closeButton:hover {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* ── Position ──────────────────────────────────────────────── */
+.topRight {
+    top: 20px;
+    right: 20px;
+}
+
+.topLeft {
+    top: 20px;
+    left: 20px;
+}
+
+.bottomRight {
+    bottom: 20px;
+    right: 20px;
+}
+
+.bottomLeft {
+    bottom: 20px;
+    left: 20px;
+}
+
+/* ── Slide animations ──────────────────────────────────────── */
+/* Slide distance uses the viewport, not the popup height: until ResizeObserver
+   runs the container often has no usable height, so % translates were ~0px. */
+@keyframes slideInBottom {
+    from {
+        transform: translateY(calc(100vh + 40px));
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutBottom {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateY(calc(100vh + 40px));
+        opacity: 0.5;
+    }
+}
+
+@keyframes slideInTop {
+    from {
+        transform: translateY(calc(-100vh - 40px));
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutTop {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateY(calc(-100vh - 40px));
+        opacity: 0.5;
+    }
+}
+
+.enterBottom {
+    animation: slideInBottom var(--popup-enter-duration) cubic-bezier(0.34, 1.2, 0.64, 1) both;
+}
+
+.exitBottom {
+    animation: slideOutBottom var(--popup-exit-duration) ease-in both;
+}
+
+.enterTop {
+    animation: slideInTop var(--popup-enter-duration) cubic-bezier(0.34, 1.2, 0.64, 1) both;
+}
+
+.exitTop {
+    animation: slideOutTop var(--popup-exit-duration) ease-in both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .container {
+        transition: none;
+    }
+
+    .enterBottom,
+    .exitBottom,
+    .enterTop,
+    .exitTop {
+        animation: none;
+    }
+}

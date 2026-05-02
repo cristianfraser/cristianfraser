@@ -1,0 +1,46 @@
+.default {
+    display: inline-block;
+    background-color: #3b82f6;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: inherit;
+    padding: 10px 16px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.15s ease;
+}
+
+.default:hover:not(:disabled) {
+    background-color: #2563eb;
+}
+
+.default:disabled {
+    background-color: #3a3a3c;
+    color: rgba(255, 255, 255, 0.35);
+    cursor: not-allowed;
+}
+
+.icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 22px;
+    padding: 4px 6px;
+    border-radius: 6px;
+    line-height: 1;
+    transition: transform 0.1s ease, background-color 0.15s ease;
+}
+
+.icon:hover:not(:disabled) {
+    transform: scale(1.2);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.icon:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
